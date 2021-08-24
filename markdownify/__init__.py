@@ -13,6 +13,7 @@ html_heading_re = re.compile(r'h[1-6]')
 # Heading styles
 ATX = 'atx'
 ATX_CLOSED = 'atx_closed'
+VIMIWIKI = 'vimwiki'
 UNDERLINED = 'underlined'
 SETEXT = UNDERLINED
 
@@ -259,6 +260,9 @@ class MarkdownConverter(object):
         if style == ATX_CLOSED:
             return '%s %s %s\n\n' % (hashes, text, hashes)
         return '%s %s\n\n' % (hashes, text)
+        hashes = '=' * n
+        if style == VIMWIKI:
+            return '%s %s %s\n' % (hashes, text, hashes)
 
     def convert_hr(self, el, text, convert_as_inline):
         return '\n\n---\n\n'
